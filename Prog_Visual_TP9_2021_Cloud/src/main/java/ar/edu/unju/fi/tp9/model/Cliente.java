@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -92,6 +96,13 @@ public class Cliente {
 	@JoinColumn(name = "cue_id")
 	private Cuenta cuenta;
 	
+	/**tp9**/
+	@ManyToMany
+	@JoinTable(name="CLIENTES_BENEFICIOS", joinColumns = @JoinColumn(name="cli_id"),
+				inverseJoinColumns = @JoinColumn(name="ben_id"))
+	private List<Beneficio> beneficios = new ArrayList<Beneficio>();
+	/****/
+	
 	public Cliente() {
 		// TODO Auto-generated constructor stub
 	}
@@ -112,8 +123,7 @@ public class Cliente {
 		this.fechaUltimaCompra = fechaUltimaCompra;
 		this.cuenta = cuenta;
 	}
-
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -213,6 +223,14 @@ public class Cliente {
 	public void setCuenta(Cuenta cuenta) {
 		this.cuenta = cuenta;
 	}
+	
+	public List<Beneficio> getBeneficios() {
+		return beneficios;
+	}
+
+	public void setBeneficios(List<Beneficio> beneficios) {
+		this.beneficios = beneficios;
+	}
 
 	public int calcularEdad(LocalDate fechaNacimiento) {
 		LocalDate hoy = LocalDate.now();
@@ -276,6 +294,6 @@ public class Cliente {
 				+ ", apellidoNombre=" + apellidoNombre + ", email=" + email + ", password=" + password
 				+ ", fechaNacimiento=" + fechaNacimiento + ", edad=" + edad + ", codigoAreaTelefono="
 				+ codigoAreaTelefono + ", nroTelefono=" + nroTelefono + ", fechaUltimaCompra=" + fechaUltimaCompra
-				+ ", cuenta=" + cuenta + "]";
+				+ ", cuenta=" + cuenta + ", beneficios=" + beneficios + "]";
 	}	
 }
