@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.tp9.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -18,7 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.tp9.model.Producto;
+import ar.edu.unju.fi.tp9.model.Beneficio;
 import ar.edu.unju.fi.tp9.model.Cliente;
+import ar.edu.unju.fi.tp9.service.IBeneficioService;
 import ar.edu.unju.fi.tp9.service.IClienteService;
 import ar.edu.unju.fi.tp9.service.ICuentaService;
 
@@ -35,12 +39,19 @@ public class ClienteController {
 	//@Autowired
 	//@Qualifier("cuentaServiceMysql")
 	//private ICuentaService cuentaService;	
+	
+	@Autowired
+	@Qualifier("beneficioServiceMysql")
+	private IBeneficioService beneficioService;
+	
+	List<Beneficio> beneficio =new ArrayList<Beneficio>();
 		
 	@GetMapping("/cliente/nuevo")
 	public String getNuevoClientePage(Model model) {
 		/*model.addAttribute("cliente", cliente);*/
 		model.addAttribute("cliente", clienteService.getCliente());
 		//model.addAttribute("cuenta", cuentaService.getCuenta());
+		model.addAttribute("beneficios",beneficioService.obtenerBeneficios());
 		return "cliente-nuevo";
 	}
 			
@@ -51,16 +62,20 @@ public class ClienteController {
 		ModelAndView modelView;
 		if(resultadoValidacion.hasErrors()) {
 			modelView = new ModelAndView("cliente-nuevo");
+			modelView.addObject("beneficios",beneficioService.obtenerBeneficios());
 			return modelView;
 		}else {	
 			cliente.setEdad(cliente.calcularEdad(cliente.getFechaNacimiento()));
+			for(Beneficio ben_cliente: cliente.getBeneficios()) {
+		    	beneficio.add(beneficioService.buscarBeneficio(ben_cliente.getId())); 	
+		    }
 			clienteService.guardarCliente(cliente);
 			modelView = new ModelAndView("clientes");
 			modelView.addObject("clientes", clienteService.obtenerClientes());
 			return modelView;
 		}
 	}
-		
+
 	@GetMapping("/cliente/listado")
 	public ModelAndView getClientesPage() {
 		ModelAndView modelView = new ModelAndView("clientes");

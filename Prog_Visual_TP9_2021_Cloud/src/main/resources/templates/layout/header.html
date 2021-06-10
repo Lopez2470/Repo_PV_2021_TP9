@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+		<header class="row bg-light" th:fragment="header"  >
+			<div class="jumbotron jumbotron-fluid col-12 m-t=0"
+				style ="background-image: url(/img/logos.png); background-size:100%">
+				 <div class="container">
+				    <h1 class="display-4 text-white" >Productos Artesanales GL</h1>
+				    <p class="lead display-8 text-white">Productos Artesanales GL - Productos Artesanales GL - Productos Artesanales GL</p>
+				    	<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light row d-flex justify-content-center"> -->
+						<div class="container-fluid">
+							<nav class="navbar navbar-expand-lg navbar-light ">
+								<div class="container-fluid">
+	   								 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+					    					<span class="navbar-toggler-icon"></span>
+							 		 </button>	
+								    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+								    	  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+										     <li class="nav-item">
+									        	<a class="nav-link active" aria-current="page" th:href="@{/home}">Home</a>
+									        </li>
+									        <li class="nav-item">
+									        	<a class="nav-link" th:href="@{/producto}">Producto</a>
+									        </li>
+									        <li class="nav-item">
+									        	<a class="nav-link" th:href="@{/cliente/nuevo}">Cliente</a>
+									        </li>
+				
+									        <li class="nav-item">
+									        	<a class="nav-link" th:href="@{/compras/}">Compras</a>
+									        </li>
+										    <li class="nav-item">
+											    <a class="nav-link" th:href="@{/producto/ultimo}">Ultimo</a>
+										    </li>
+										    <li class="nav-item dropdown">
+										        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										          Listados
+										        </a>
+										        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+											          <a class="dropdown-item" th:href="@{/producto/listado}">Producto</a>
+											          <a class="dropdown-item" th:href="@{/cliente/listado}">Cliente</a>
+											          <a class="dropdown-item" th:href="@{/compras/listado}">Compras</a>
+										        </div>
+										      </li> 
+									     </ul>
+									 </div>
+								</div>
+							 </nav>	
+						</div> 	    
+				  </div>
+			</div>
+		</header>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>ClientesListado</title>
+		<link rel="stylesheet" type="text/css" th:href=@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}">		
+	</head>
+	<body>	
+		<div class="container">
+			<header th:replace="layout/header :: header"></header>
+			<div class="row ">
+				<section class=" col-sm-6 col-md-9 bg-light">
+					<div class="bg-primary titulo01 col-12 text-center">
+						<h3 class="text-center">LISTADO DE CLIENTES</h3>
+						</div >
+							<div class="table-responsive">
+								<table class="table table=striped" id="tbCliente">
+									<thead>
+										<tr>
+											<th>Tipo-DNI</th>
+											<th>Nro-DNI</th>
+											<th>Nombre-Ap</th>
+											<th>Email</th>
+											<th>Password</th>
+											<th>Fec-Nac</th>
+											<th>Eedad</th>
+											<th>Teléfono</th>
+											<th>F-Compra</th>
+											<!--<th>ULTIMA COMPRA</th>-->	
+											<!--<th>DIAS DESDE NAC</th> -->	
+											<!--<th>TIEMPO PROX CUMPLE</th>	-->	
+											<th>Acciones</th>	
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="client : ${clientes}">
+											<td th:text="${client.tipoDocumento}" align="center"></td>
+											<td th:text="${client.nroDocumento}" align="center"></td>
+											<td th:text="${(client.apellidoNombre).toUpperCase()}" align="center"></td>
+											<td th:text="${client.email}" align="center"></td>
+											<td th:text="${client.password}" align="center"></td>
+											<td th:text="${#temporals.format(client.fechaNacimiento,'dd/MM/yyyy')}" align="center"></td>
+											<td th:text="${client.edad}" align="center"></td>
+											<td th:text="${client.codigoAreaTelefono} + '-' + ${client.nroTelefono}" align="center"></td>
+											<td th:text="${#temporals.format(client.fechaUltimaCompra,'dd-MM-yyyy')}" align="center"></td>
+											<!--<td th:text="${client.tDesdeUltimaCompra()}" align="center"></td>-->
+											<!--<td th:text="${client.tDesdeFechaNacimiento()}" align="center"></td>-->
+											<!--<td th:text="${client.tHastaProxCumple()}" align="center"></td>-->
+											<td>
+												<a th:href="@{/cliente/editar/}+${client.id}" class="btn btn-warning">Editar</a>
+											</td>
+											<td>
+												<a th:href="@{/cliente/eliminar/}+${client.id}" class="btn btn-danger">Eliminar</a>
+											</td>
+											
+										</tr>
+									</tbody>
+								</table>
+							</div>
+				</section>
+				<aside th:replace="layout/publicidad :: publicidad"></aside>
+			</div>
+			<footer th:replace="layout/footer :: footer"></footer>
+		</div>
+	</body>
+</html>

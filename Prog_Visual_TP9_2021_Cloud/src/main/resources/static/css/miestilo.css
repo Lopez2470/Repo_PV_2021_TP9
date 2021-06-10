@@ -1,0 +1,31 @@
+@charset "ISO-8859-1";
+
+.titulo01{
+	font-family: cursive;
+	color: black;
+}
+/*
+  .table-fixed tbody {
+      display:block;
+      max-height:500px;
+      overflow-y:auto;
+  }
+  .table-fixed tr {
+      display:table;
+      width:100%;
+      table-layout:fixed;
+  }
+*/
+
+.table-fixed thead tr th { 
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #ffffff;
+        }
+    
+        .table-responsive { 
+            height:75%;
+            overflow:scroll;
+        }
+

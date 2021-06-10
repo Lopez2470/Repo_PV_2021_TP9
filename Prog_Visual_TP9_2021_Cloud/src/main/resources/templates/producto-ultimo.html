@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Ultimo Producto Dado de Alta</title>
+		<link rel="stylesheet" type="text/css" th:href=@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}">
+	</head>
+	<body>
+		<div class="container">
+			<header th:replace="layout/header :: header"></header>
+			<div class="row ">
+				<section class=" col-md-9 bg-light">
+					<h3 class="text-center">Detalles del Ultimo Producto dado de Alta</h3>
+					<div class="table-responsive">
+						<table class="table table=striped" id="tbProducto">
+							<thead>
+								<tr>
+									<th>CODIGO</th>
+									<th>NOMBRE</th>
+									<th>PRECIO</th>
+									<th>MARCA</th>
+									<th>STOCK</th>	
+								</tr>
+							</thead>
+							<tbody>
+									<td th:text="${producto.codigo}"></td>
+									<td th:text="${producto.nombre}"></td>
+									<td th:text="${producto.precio}"></td>
+									<td th:text="${producto.marca}"></td>
+									<td th:text="${producto.stock}"></td>
+							</tbody>
+						</table>				
+					</div>
+				</section>
+				<aside th:replace="layout/publicidad :: publicidad"></aside>
+			</div>
+		</div>	
+		<footer th:replace="layout/footer :: footer"></footer>
+	</body>
+</html>
