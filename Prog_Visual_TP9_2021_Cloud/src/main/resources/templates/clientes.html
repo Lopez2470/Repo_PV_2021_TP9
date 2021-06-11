@@ -23,11 +23,12 @@
 											<th>Nro-DNI</th>
 											<th>Nombre-Ap</th>
 											<th>Email</th>
-											<th>Password</th>
+											<!--<th>Password</th>-->
 											<th>Fec-Nac</th>
 											<th>Eedad</th>
 											<th>Teléfono</th>
-											<th>F-Compra</th>
+											<th>Beneficios</th>
+											<!--<th>F-Compra</th>-->
 											<!--<th>ULTIMA COMPRA</th>-->	
 											<!--<th>DIAS DESDE NAC</th> -->	
 											<!--<th>TIEMPO PROX CUMPLE</th>	-->	
@@ -40,14 +41,20 @@
 											<td th:text="${client.nroDocumento}" align="center"></td>
 											<td th:text="${(client.apellidoNombre).toUpperCase()}" align="center"></td>
 											<td th:text="${client.email}" align="center"></td>
-											<td th:text="${client.password}" align="center"></td>
+											<!--<td th:text="${client.password}" align="center"></td>-->
 											<td th:text="${#temporals.format(client.fechaNacimiento,'dd/MM/yyyy')}" align="center"></td>
 											<td th:text="${client.edad}" align="center"></td>
 											<td th:text="${client.codigoAreaTelefono} + '-' + ${client.nroTelefono}" align="center"></td>
-											<td th:text="${#temporals.format(client.fechaUltimaCompra,'dd-MM-yyyy')}" align="center"></td>
+											<!--<td th:text="${#temporals.format(client.fechaUltimaCompra,'dd-MM-yyyy')}" align="center"></td>-->
 											<!--<td th:text="${client.tDesdeUltimaCompra()}" align="center"></td>-->
 											<!--<td th:text="${client.tDesdeFechaNacimiento()}" align="center"></td>-->
 											<!--<td th:text="${client.tHastaProxCumple()}" align="center"></td>-->
+											<!-- Beneficios -->
+											<td>
+												<span th:each="benef:${client.beneficios}" >
+													<p th:text="${benef.descripcion}"></p>
+												</span>
+											</td>
 											<td>
 												<a th:href="@{/cliente/editar/}+${client.id}" class="btn btn-warning">Editar</a>
 											</td>
